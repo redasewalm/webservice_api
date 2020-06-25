@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    </form>
+    <label for="name">dept Name:</label>
+    <input type=text" class="form-control" id="name" placeholder="Enter Name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="pwd">number bed:</label>
+        <input type="text" class="form-control" id="p1" name="pwd">
+    </div>
+    <button type="submit" id="add" class="btn  btn btn-primary col-lg-3 col-md-3 col-sm-12 col-xs-12">Add</button>
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#add").click(function () {
+                var dept = {
+                    num_bed: $("#p1").val(),
+                    dept_name: $("#name").val()
+                    // var se_id = '<%= Session["se_id"] %>';
+                };
+                // var doc =  { "name":"vvr2", "l_name":"sewalm", "password1":"2344", "age":27, "address":"banha", "gender":"female", "ssn":555, "dept_name":"fffff" }
+                //var dept = {
+                //    "num_bed": 240, "dept_name": "2l"
+                //}
+
+                // var a_id = document.getElementById("id");
+                //var a_id = sessionStorage.getItem("id");
+
+                $.ajax({
+
+                    type: "POST",
+                    url: 'http://localhost:56498/api/dept/Adddept?admin_id=' + 81,
+
+                    data: dept,
+
+                    success: function ( response) {
+
+                        alert(response);
+                            ReloadGrid();
+                       
+                    },
+                    error: function (xhr) {
+                        alert("data exist");
+                    }
+                });
+            });
+        });
+
+    </script>
+    <!-- end  footer -->
+    <!--<label for="name">dept Name:</label>
+    <input type=text" class="form-control" id="name2" placeholder="Enter Name" name="name">
+    <button type="submit" id="add" class="btn  btn btn-primary col-lg-3 col-md-3 col-sm-12 col-xs-12">search</button></br></br></br>
+
+    <label for="name">dept Name:</label>
+    <input type=text" class="form-control" id="name" placeholder="Enter Name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="pwd">number bed:</label>
+        <!--<!--<input type="text" class="form-control" id="p1" name="pwd">
+    </div>-->
+    <!--<label for="name">Name:</label>
+    <input type=text" class="form-control" id="name2" placeholder="Enter Name" name="name">
+    <label for="name">password:</label>
+    <input type=text" class="form-control" id="pass" placeholder="Enter Name" name="name">
+    </div>
+    <button type="submit" id="add" class="btn  btn btn-primary col-lg-3 col-md-3 col-sm-12 col-xs-12">login</button></br></br></br>
+
+
+
+    </div>
+    <div class="form-group">
+        <label for="pwd">number bed:</label>
+        <input type="text" class="form-control" id="p1" name="pwd">
+    </div>
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#add").click(function () {
+                var name = $("#name2").val();
+                var password = $("#pass").val();
+                var se_id ;
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:56498/api/web_login/login?",
+                    data: "username=" + name + "&password=" + password,
+                    success: function (response) {
+                        //if (response != 0) {
+                        //    se_id = response;
+                        //    window.localStorage.setItem('token', se_id);
+                        //   // sessionStorage.setItem("id", "se_id");
+                        //    location.href = "admin_page.html"
+
+
+                        //}
+                    },
+                    beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', window.localStorage.getItem('token')); },
+
+                    error: function (xhr) {
+                        alert(xhr.loginerror);
+                    }
+                });
+            });
+        });
+
+    </script>-->
+    //////////////////////////add dept//////////////////
+    <!--<script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">-->
+    -->
+    $(function () {
+    $("#add").click(function () {
+    var dept_name = $("#name2").val();
+    $.ajax({
+    type: "GET",
+    url: "http://localhost:56498/api/dept/Get_dept?dept_name=" + dept_name,
+
+    success: function (response) {
+    if (response != null) {
+    $('#name').val(response.dept_name);
+    $('#p1').val(response.num_bed);
+
+    }
+    },
+    error: function (xhr) {
+    alert(xhr.responseText);
+    }
+    });
+    });
+    });
+
+    </script>-->
+    ////////////////////////////////////////////////
+    <!--<form action="/action_page.php" method="post">
+        <div class="container">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="addess">Address:</label>
+                <input type="text" class="form-control" id='address' placeholder="Enter address" name="address">
+            </div>
+            <div class="form-group">
+                <label for="#ofbed">Number of bed:</label>
+                <input type="text" class="form-control" id='numberofbed' placeholder="Enter Numer of bed" name="numberofbed">
+            </div>
+            <div class="col-25">
+                <button type="submit" class="btn  btn btn-primary col-lg-3 col-md-3 col-sm-12 col-xs-12">Update</button>
+            </div>
+
+        </div>
+    </form>
+        <label for="name">dept Name:</label>
+        <input type=text" class="form-control" id="name" placeholder="Enter Name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="pwd">number bed:</label>
+            <input type="text" class="form-control" id="p1"  name="pwd">
+        </div>
+        <button type="submit" id="add" class="btn  btn btn-primary col-lg-3 col-md-3 col-sm-12 col-xs-12">Add</button>
+        <script src="/Scripts/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#add").click(function () {
+                    var dept= {
+                        num_bed : $("#p1").val(),
+                        dept_name : $("#name").val()
+
+                    };
+                 // var doc =  { "name":"vvr2", "l_name":"sewalm", "password1":"2344", "age":27, "address":"banha", "gender":"female", "ssn":555, "dept_name":"fffff" }
+                    //var dept = {
+                    //    "num_bed": 240, "dept_name": "2l"
+                    //}
+
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: 'http://localhost:56498/api/doctor/add_doctor?admin_id=1',
+                        data: JSON.stringify(dept),
+                        contentType: "application/json",
+                        success: function (dept, status, xhr) {
+                            alert("The result is : " + dept);
+                        },
+                        error: function (xhr) {
+                            alert(xhr.responseText);
+                        }
+                    });
+                });
+            });
+
+        </script>-->
+    /////////////////
+    <!--<h1>Complex Type</h1>
+    <form name="postform" id="postform" class="form-horizontal">
+        <div>
+            <label for="status">Status</label>
+        </div>
+        <div>
+            <input name="status" id="a1" type="text" />
+        </div>
+        <div>
+            <label for="date">Date</label>
+        </div>
+        <div>
+            <input name="date" id="a2" type="text" />
+        </div>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#postform").submit(function (e) {
+                e.preventDefault();
+                var apiurl = "http://localhost:56498/api/dept/Adddept?admin_id=1";
+                var data = {
+                    num_bed: $("#a1").val().trim(),
+                    dept_name: $("#a2").val().trim(),
+
+                }
+                $.ajax({
+                    url: apiurl,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: data,
+                    success: function (d) {
+                        alert("Saved Successfully");
+                        document.getElementById("postform").reset();
+                    },
+                    error: function () {
+                        alert("Error please try again");
+                    }
+                });
+            });
+        });
+
+    </script>-->
+</body>
+</html>
